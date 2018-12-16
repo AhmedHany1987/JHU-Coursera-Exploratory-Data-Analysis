@@ -14,8 +14,10 @@ colnames(baltLA_car_year) <- c("City", "Year", "Emissions")
 ## create plot comparing emissions from motor vehicles in Baltimore and LA from 1999-2008
 library(ggplot2)
 png(filename = "plot6.png")
-qplot(Year, Emissions, data = baltLA_car_year, color = City, geom = "line") +
+image <- ggplot(baltLA_car_year, aes(Year, Emissions, color = City)) +
+    geom_line() +
     ggtitle("Emissions of PM2.5 in Baltimore City (24510) and LA County (06037)") + 
     ylab("Total Emissions from motor vehicles (tons)") + 
-    xlab("Year") 
+    xlab("Year")
+print(image)
 dev.off()

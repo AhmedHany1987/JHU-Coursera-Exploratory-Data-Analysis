@@ -12,8 +12,10 @@ colnames(baltimore_type_year) <- c("Type", "Year", "Emissions")
 ## create plot with ggplot2
 library(ggplot2)
 png(filename = "plot3.png")
-qplot(Year, Emissions, data = baltimore_type_year, color = Type, geom = "line") +
-    ggtitle("Total Emissions of PM2.5 in Baltimore City By pollutant type") + 
-    ylab("Total Emissions (tons)") + 
-    xlab("Year") 
+g <- ggplot(baltimore_type_year, aes(Year, Emissions, color = Type))
+g <- g + geom_line() +
+    xlab("year") +
+    ylab(expression('Total PM'[2.5]*" Emissions")) +
+    ggtitle('Total Emissions in Baltimore City, Maryland (fips == "24510") from 1999 to 2008')
+print(g)
 dev.off()
